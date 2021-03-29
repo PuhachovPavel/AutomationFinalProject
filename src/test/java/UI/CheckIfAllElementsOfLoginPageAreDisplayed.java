@@ -1,5 +1,6 @@
 package UI;
 
+import UI.MetaData.DriverData;
 import UI.MetaData.LoginData;
 import UI.PageObjects.LoginPage;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ public class CheckIfAllElementsOfLoginPageAreDisplayed {
     @BeforeTest
     public void arrange() {
 
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty(DriverData.WEBDRIVERKEY.getData(), DriverData.WEBDRIVERVALUE.getData());
 
         webDriver = new ChromeDriver();
 

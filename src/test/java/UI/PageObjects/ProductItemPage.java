@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -13,7 +15,7 @@ public class ProductItemPage {
 
         PageFactory.initElements(webDriver, this);
 
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @FindBy(xpath = "//*[@id=\"inventory_item_container\"]/div/div/div/div[3]")
@@ -31,35 +33,55 @@ public class ProductItemPage {
     @FindBy(xpath = "//*[@id=\"inventory_item_container\"]/div/button")
     WebElement backButton;
 
-    public ProductItemPage checkPriceTag() {
+    public ProductItemPage checkPriceTag(WebDriver webDriver) {
+
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+        wait.until(ExpectedConditions.visibilityOf(priceTag));
 
         assert (priceTag.isDisplayed());
 
         return this;
     }
 
-    public ProductItemPage checkAddToCartButton() {
+    public ProductItemPage checkAddToCartButton(WebDriver webDriver) {
+
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+        wait.until(ExpectedConditions.visibilityOf(addToCartButton));
 
         assert (addToCartButton.isDisplayed());
 
         return this;
     }
 
-    public ProductItemPage checkRemoveButton() {
+    public ProductItemPage checkRemoveButton(WebDriver webDriver) {
+
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+        wait.until(ExpectedConditions.visibilityOf(removeButton));
 
         assert (removeButton.isDisplayed());
 
         return this;
     }
 
-    public ProductItemPage checkProductImage() {
+    public ProductItemPage checkProductImage(WebDriver webDriver) {
+
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+        wait.until(ExpectedConditions.visibilityOf(productImage));
 
         assert (productImage.isDisplayed());
 
         return this;
     }
 
-    public ProductItemPage checkBackButton() {
+    public ProductItemPage checkBackButton(WebDriver webDriver) {
+
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+        wait.until(ExpectedConditions.visibilityOf(backButton));
 
         assert (backButton.isDisplayed());
 

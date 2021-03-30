@@ -5,13 +5,16 @@ import UI.MetaData.LoginData;
 import UI.PageObjects.LoginPage;
 import UI.PageObjects.ProductItemPage;
 import UI.PageObjects.ProductsPage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatAllElementsOfProductItemPageAreDisplayed {
+import static org.testng.Assert.fail;
+
+public class CheckRemoveFunctionalityOnProductItemPage {
 
     WebDriver webDriver;
 
@@ -41,7 +44,27 @@ public class CheckThatAllElementsOfProductItemPageAreDisplayed {
 
         productsPage.checkFirstProductItem().goToFirstItemProductPage();
 
-        productItemPage.checkProductImage(webDriver).checkPriceTag(webDriver).checkAddToCartButton(webDriver).checkShoppingCartButton(webDriver).checkBackButton(webDriver);
+        productItemPage.checkAddToCartButton(webDriver).addToCart();
+
+        productItemPage.checkRemoveButton(webDriver);
+
+        productItemPage.checkItemsInCartCounter().checkItemsInCartCounterValue();
+
+        productItemPage.checkRemoveButton(webDriver).remove();
+
+        try{
+
+            productItemPage.checkItemsInCartCounter();
+
+            fail("Cart counter is still displayed");
+
+        } catch (NoSuchElementException e) {
+
+            System.out.println("Cart counter = 0 (not displayed)");
+
+        }
+
+        productItemPage.checkAddToCartButton(webDriver);
 
     }
 

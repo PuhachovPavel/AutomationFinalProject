@@ -32,18 +32,6 @@ public class ProductsPage {
     @FindBy(xpath = "//*[@id=\"inventory_filter_container\"]/select")
     WebElement sortingDDL;
 
-    @FindBy(xpath = "//*[@id=\"inventory_filter_container\"]/select/option[1]")
-    WebElement sortOptionNameASC;
-
-    @FindBy(xpath = "//*[@id=\"inventory_filter_container\"]/select/option[2]")
-    WebElement sortOptionNameDSC;
-
-    @FindBy(xpath = "//*[@id=\"inventory_filter_container\"]/select/option[3]")
-    WebElement sortOptionPriceASC;
-
-    @FindBy(xpath = "//*[@id=\"inventory_filter_container\"]/select/option[4]")
-    WebElement sortOptionPriceDSC;
-
     @FindBy(xpath = "//*[@id=\"inventory_container\"]/div/div[1]/div[3]/button")
     WebElement addToCartButton;
 
@@ -122,34 +110,6 @@ public class ProductsPage {
         return this;
     }
 
-    public ProductsPage checkSortOptionNameASC() {
-
-        assert (sortOptionNameASC.isDisplayed());
-
-        return this;
-    }
-
-    public ProductsPage checkSortOptionNameDSC() {
-
-        assert (sortOptionNameDSC.isDisplayed());
-
-        return this;
-    }
-
-    public ProductsPage checkSortOptionPriceASC() {
-
-        assert (sortOptionPriceASC.isDisplayed());
-
-        return this;
-    }
-
-    public ProductsPage checkSortOptionPriceDSC() {
-
-        assert (sortOptionPriceDSC.isDisplayed());
-
-        return this;
-    }
-
     public ProductsPage checkAddToCartButton() {
 
         assert (addToCartButton.isDisplayed());
@@ -159,7 +119,7 @@ public class ProductsPage {
 
     public ProductsPage checkRemoveButton() {
 
-        assert (removeButton.isDisplayed());
+        assert (removeButton.isDisplayed() && removeButton.getText().equals("REMOVE"));
 
         return this;
     }
@@ -233,6 +193,12 @@ public class ProductsPage {
     public void goToFirstItemProductPage() {
 
         firstProductItem.click();
+
+    }
+
+    public void goToShoppingCart() {
+
+        shoppingCartButton.click();
 
     }
 

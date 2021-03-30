@@ -2,15 +2,15 @@ package UI;
 
 import UI.MetaData.DriverData;
 import UI.MetaData.LoginData;
-import UI.PageObjects.LoginPage;
-import UI.PageObjects.ProductsPage;
+import UI.MetaData.YourInformationData;
+import UI.PageObjects.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckAddToCartFunctionalityOnProductsPage {
+public class CheckCancelFunctionalityOnOverviewPage {
 
     WebDriver webDriver;
 
@@ -32,15 +32,31 @@ public class CheckAddToCartFunctionalityOnProductsPage {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
+
+        YourInformationPage yourInformationPage = new YourInformationPage(webDriver);
+
+        OverviewPage overviewPage = new OverviewPage(webDriver);
+
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
         productsPage.checkAddToCartButton().addToCart();
 
-        productsPage.checkRemoveButton();
+        productsPage.checkItemsInCartCounterValue();
 
-        productsPage.checkItemsInCartCounter().checkItemsInCartCounterValue();
+        productsPage.goToShoppingCart();
+
+        shoppingCartPage.checkCheckoutButton().checkout();
+
+        yourInformationPage.checkFirstNameField().checkLastNameField().checkPostalCodeField();
+
+        yourInformationPage.enterYourInformation(YourInformationData.FIRSTNAME.getData(), YourInformationData.LASTNAME.getData(), YourInformationData.POSTALCODE.getData()).pressContinue();
+
+        overviewPage.checkCancelButton().cancel();
+
+        productsPage.checkRemoveButton().checkItemsInCartCounterValue();
 
     }
 

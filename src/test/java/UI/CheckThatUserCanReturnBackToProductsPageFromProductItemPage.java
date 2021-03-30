@@ -11,7 +11,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatAllElementsOfProductItemPageAreDisplayed {
+public class CheckThatUserCanReturnBackToProductsPageFromProductItemPage {
 
     WebDriver webDriver;
 
@@ -41,7 +41,9 @@ public class CheckThatAllElementsOfProductItemPageAreDisplayed {
 
         productsPage.checkFirstProductItem().goToFirstItemProductPage();
 
-        productItemPage.checkProductImage(webDriver).checkPriceTag(webDriver).checkAddToCartButton(webDriver).checkShoppingCartButton(webDriver).checkBackButton(webDriver);
+        productItemPage.checkBackButton(webDriver).goBack();
+
+        productsPage.checkProductsLabel();
 
     }
 

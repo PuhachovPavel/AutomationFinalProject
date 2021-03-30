@@ -13,16 +13,22 @@ public class ShoppingCartPage {
 
         PageFactory.initElements(webDriver, this);
 
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[2]/a[1]")
     WebElement continueShoppingButton;
 
-    @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[2]/a[1]")
+    @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[2]/a[2]")
     WebElement checkoutButton;
 
-    @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[2]/a[1]")
+    @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]")
+    WebElement shoppingCartButton;
+
+    @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]/a/span")
+    WebElement itemsInCartCounter;
+
+    @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[1]/div[3]/div[2]/div[2]/button")
     WebElement removeButton;
 
     @FindBy(xpath = "//*[@id=\"cart_contents_container\"]/div/div[1]/div[3]")
@@ -38,6 +44,20 @@ public class ShoppingCartPage {
     public ShoppingCartPage checkCheckoutButton() {
 
         assert (checkoutButton.isDisplayed());
+
+        return this;
+    }
+
+    public ShoppingCartPage checkShoppingCartButton() {
+
+        assert (shoppingCartButton.isDisplayed());
+
+        return this;
+    }
+
+    public ShoppingCartPage checkItemsInCartCounter() {
+
+        assert (itemsInCartCounter.isDisplayed());
 
         return this;
     }

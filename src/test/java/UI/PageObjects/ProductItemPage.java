@@ -18,17 +18,25 @@ public class ProductItemPage {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+    public int itemsInCart;
+
     @FindBy(xpath = "//*[@id=\"inventory_item_container\"]/div/div/div/div[3]")
     WebElement priceTag;
 
     @FindBy(xpath = "//*[@id=\"inventory_item_container\"]/div/div/div/button")
     WebElement addToCartButton;
 
-    @FindBy(linkText = "REMOVE")
+    @FindBy(xpath = "//*[@id=\"inventory_item_container\"]/div/div/div/button")
     WebElement removeButton;
 
     @FindBy(xpath = "//*[@id=\"inventory_item_container\"]/div/div/img")
     WebElement productImage;
+
+    @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]")
+    WebElement shoppingCartButton;
+
+    @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]/a/span")
+    WebElement itemsInCartCounter;
 
     @FindBy(xpath = "//*[@id=\"inventory_item_container\"]/div/button")
     WebElement backButton;
@@ -61,7 +69,7 @@ public class ProductItemPage {
 
         wait.until(ExpectedConditions.visibilityOf(removeButton));
 
-        assert (removeButton.isDisplayed());
+        assert (removeButton.isDisplayed() && removeButton.getText().equals("REMOVE"));
 
         return this;
     }
@@ -73,6 +81,24 @@ public class ProductItemPage {
         wait.until(ExpectedConditions.visibilityOf(productImage));
 
         assert (productImage.isDisplayed());
+
+        return this;
+    }
+
+    public ProductItemPage checkShoppingCartButton(WebDriver webDriver) {
+
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+
+        wait.until(ExpectedConditions.visibilityOf(productImage));
+
+        assert (shoppingCartButton.isDisplayed());
+
+        return this;
+    }
+
+    public ProductItemPage checkItemsInCartCounter() {
+
+        assert (itemsInCartCounter.isDisplayed());
 
         return this;
     }
@@ -90,15 +116,29 @@ public class ProductItemPage {
 
     public ProductItemPage addToCart() {
 
+        itemsInCart = 0;
+
         addToCartButton.click();
+
+        itemsInCart++;
 
         return this;
 
     }
 
-    public ProductItemPage removeFromCart() {
+    public ProductItemPage remove() {
 
         removeButton.click();
+
+        itemsInCart--;
+
+        return this;
+
+    }
+
+    public ProductItemPage checkItemsInCartCounterValue() {
+
+        assert (itemsInCartCounter.getText().equals(String.valueOf(itemsInCart)));
 
         return this;
 

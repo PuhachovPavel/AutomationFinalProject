@@ -4,7 +4,7 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import org.testng.annotations.Test;
 
-public class ReadUser {
+public class ReadUserTest {
 
     @Test
     public void getUser() {

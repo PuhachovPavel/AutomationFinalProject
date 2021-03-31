@@ -2,16 +2,15 @@ package UI.tests;
 
 import UI.metaData.DriverData;
 import UI.metaData.LoginData;
-import UI.pageObjects.LoginPage;
-import UI.pageObjects.ProductItemPage;
-import UI.pageObjects.ProductsPage;
+import UI.metaData.YourInformationData;
+import UI.pageObjects.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatUserCanReturnBackToProductsPageFromProductItemPage {
+public class CheckFillingYourInformationTest {
 
     WebDriver webDriver;
 
@@ -33,17 +32,29 @@ public class CheckThatUserCanReturnBackToProductsPageFromProductItemPage {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
-        ProductItemPage productItemPage = new ProductItemPage(webDriver);
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
+
+        YourInformationPage yourInformationPage = new YourInformationPage(webDriver);
+
+        OverviewPage overviewPage = new OverviewPage(webDriver);
 
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
-        productsPage.checkFirstProductItem().goToFirstItemProductPage();
+        productsPage.checkAddToCartButton().addToCart();
 
-        productItemPage.checkBackButton(webDriver).goBack();
+        productsPage.checkItemsInCartCounterValue();
 
-        productsPage.checkProductsLabel();
+        productsPage.goToShoppingCart();
+
+        shoppingCartPage.checkCheckoutButton().checkout();
+
+        yourInformationPage.checkFirstNameField().checkLastNameField().checkPostalCodeField();
+
+        yourInformationPage.enterYourInformation(YourInformationData.FIRSTNAME.getData(), YourInformationData.LASTNAME.getData(), YourInformationData.POSTALCODE.getData()).pressContinue();
+
+        overviewPage.checkAddedItem();
 
     }
 

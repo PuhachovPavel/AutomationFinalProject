@@ -5,14 +5,16 @@ import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
 import UI.pageObjects.ProductsPage;
 import UI.pageObjects.ShoppingCartPage;
-import UI.pageObjects.YourInformationPage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckCheckoutFunctionality {
+import static org.testng.Assert.fail;
+
+public class CheckRemoveFunctionalityOnShoppingCartPageTest {
 
     WebDriver webDriver;
 
@@ -36,8 +38,6 @@ public class CheckCheckoutFunctionality {
 
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
 
-        YourInformationPage yourInformationPage = new YourInformationPage(webDriver);
-
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
@@ -48,9 +48,35 @@ public class CheckCheckoutFunctionality {
 
         productsPage.goToShoppingCart();
 
-        shoppingCartPage.checkCheckoutButton().checkout();
+        shoppingCartPage.checkRemoveButton().removeAddedItem();
 
-        yourInformationPage.checkCancelButton().checkContinueButton().checkFirstNameField().checkLastNameField().checkPostalCodeField();
+        try{
+
+            shoppingCartPage.checkIfAnItemWasAdded();
+
+            fail("Item is still displayed");
+
+        } catch (NoSuchElementException e) {
+
+            System.out.println("Item was removed");
+
+        }catch (AssertionError e) {
+
+            System.out.println("Item was removed");
+
+        }
+
+        try{
+
+            shoppingCartPage.checkItemsInCartCounter();
+
+            fail("Counter is still displayed");
+
+        } catch (NoSuchElementException e) {
+
+            System.out.println("Counter was removed");
+
+        }
 
     }
 

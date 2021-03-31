@@ -3,7 +3,6 @@ package UI.tests;
 import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
-import UI.pageObjects.ProductItemPage;
 import UI.pageObjects.ProductsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,7 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatAllElementsOfProductItemPageAreDisplayed {
+public class CheckThatMenuCanBeOpenedAndClosedTest {
 
     WebDriver webDriver;
 
@@ -33,15 +32,15 @@ public class CheckThatAllElementsOfProductItemPageAreDisplayed {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
-        ProductItemPage productItemPage = new ProductItemPage(webDriver);
-
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
-        productsPage.checkFirstProductItem().goToFirstItemProductPage();
+        productsPage.checkMenuButton().openMenu();
 
-        productItemPage.checkProductImage(webDriver).checkPriceTag(webDriver).checkAddToCartButton(webDriver).checkShoppingCartButton(webDriver).checkBackButton(webDriver);
+        productsPage.checkCloseMenuButton(webDriver).closeMenu();
+
+        productsPage.checkMenuButton();
 
     }
 

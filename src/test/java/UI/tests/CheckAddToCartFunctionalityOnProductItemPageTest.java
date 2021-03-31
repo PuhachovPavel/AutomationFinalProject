@@ -3,6 +3,7 @@ package UI.tests;
 import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
+import UI.pageObjects.ProductItemPage;
 import UI.pageObjects.ProductsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +11,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatMenuCanBeOpenedAndClosed {
+public class CheckAddToCartFunctionalityOnProductItemPageTest {
 
     WebDriver webDriver;
 
@@ -32,15 +33,19 @@ public class CheckThatMenuCanBeOpenedAndClosed {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
+        ProductItemPage productItemPage = new ProductItemPage(webDriver);
+
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
-        productsPage.checkMenuButton().openMenu();
+        productsPage.checkFirstProductItem().goToFirstItemProductPage();
 
-        productsPage.checkCloseMenuButton(webDriver).closeMenu();
+        productItemPage.checkAddToCartButton(webDriver).addToCart();
 
-        productsPage.checkMenuButton();
+        productItemPage.checkRemoveButton(webDriver);
+
+        productItemPage.checkItemsInCartCounter().checkItemsInCartCounterValue();
 
     }
 

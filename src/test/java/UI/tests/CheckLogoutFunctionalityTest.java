@@ -4,16 +4,13 @@ import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
 import UI.pageObjects.ProductsPage;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.fail;
-
-public class CheckRemoveFunctionalityOnProductsPage {
+public class CheckLogoutFunctionalityTest {
 
     WebDriver webDriver;
 
@@ -39,25 +36,13 @@ public class CheckRemoveFunctionalityOnProductsPage {
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
-        productsPage.checkAddToCartButton().addToCart();
+        productsPage.checkProductsLabel();
 
-        productsPage.checkItemsInCartCounter().checkItemsInCartCounterValue();
+        productsPage.checkMenuButton().openMenu();
 
-        productsPage.checkRemoveButton().remove();
+        productsPage.checkLogOutButton(webDriver).logOut();
 
-        try{
-
-            productsPage.checkItemsInCartCounter();
-
-            fail("Cart counter is still displayed");
-
-        } catch (NoSuchElementException e) {
-
-            System.out.println("Cart counter = 0 (not displayed)");
-
-        }
-
-        productsPage.checkAddToCartButton();
+        loginPage.checkLoginButton();
 
     }
 

@@ -3,18 +3,16 @@ package UI.tests;
 import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
-import UI.pageObjects.ProductItemPage;
 import UI.pageObjects.ProductsPage;
-import org.openqa.selenium.NoSuchElementException;
+import UI.pageObjects.ShoppingCartPage;
+import UI.pageObjects.YourInformationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.fail;
-
-public class CheckRemoveFunctionalityOnProductItemPage {
+public class CheckCancelFunctionalityOnYourInformationPageTest {
 
     WebDriver webDriver;
 
@@ -36,35 +34,25 @@ public class CheckRemoveFunctionalityOnProductItemPage {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
-        ProductItemPage productItemPage = new ProductItemPage(webDriver);
+        YourInformationPage yourInformationPage = new YourInformationPage(webDriver);
+
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
 
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
-        productsPage.checkFirstProductItem().goToFirstItemProductPage();
+        productsPage.checkAddToCartButton().addToCart();
 
-        productItemPage.checkAddToCartButton(webDriver).addToCart();
+        productsPage.checkItemsInCartCounterValue();
 
-        productItemPage.checkRemoveButton(webDriver);
+        productsPage.goToShoppingCart();
 
-        productItemPage.checkItemsInCartCounter().checkItemsInCartCounterValue();
+        shoppingCartPage.checkCheckoutButton().checkout();
 
-        productItemPage.checkRemoveButton(webDriver).remove();
+        yourInformationPage.checkCancelButton().cancel();
 
-        try{
-
-            productItemPage.checkItemsInCartCounter();
-
-            fail("Cart counter is still displayed");
-
-        } catch (NoSuchElementException e) {
-
-            System.out.println("Cart counter = 0 (not displayed)");
-
-        }
-
-        productItemPage.checkAddToCartButton(webDriver);
+        shoppingCartPage.checkIfAnItemWasAdded().checkItemsInCartCounter();
 
     }
 

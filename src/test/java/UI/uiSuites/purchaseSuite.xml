@@ -1,30 +1,30 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Purchase">
+<suite name = "purchaseSuite">
     <test name = "Login">
         <classes>
-            <class name = "UI.tests.CheckLoginFunctionality"/>
+            <class name = "UI.tests.CheckLoginFunctionalityTest"/>
         </classes>
     </test>
     <test name = "Add to Cart from Products">
         <classes>
-            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductsPage"/>
+            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductsPageTest"/>
         </classes>
     </test>
     <test name = "Add to Cart from Product Item">
         <classes>
-            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductItemPage"/>
+            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductItemPageTest"/>
         </classes>
     </test>
     <test name = "Checkout">
         <classes>
-            <class name = "UI.tests.CheckCheckoutFunctionality"/>
+            <class name = "UI.tests.CheckCheckoutFunctionalityTest"/>
         </classes>
     </test>
     <test name = "Purchase">
         <classes>
-            <class name = "UI.tests.CheckFinishFunctionality"/>
+            <class name = "UI.tests.CheckFinishFunctionalityTest"/>
         </classes>
     </test>
 </suite>

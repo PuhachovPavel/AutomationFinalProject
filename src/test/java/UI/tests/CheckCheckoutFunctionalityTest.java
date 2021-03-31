@@ -4,13 +4,15 @@ import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
 import UI.pageObjects.ProductsPage;
+import UI.pageObjects.ShoppingCartPage;
+import UI.pageObjects.YourInformationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckLoginFunctionality {
+public class CheckCheckoutFunctionalityTest {
 
     WebDriver webDriver;
 
@@ -32,11 +34,23 @@ public class CheckLoginFunctionality {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
+
+        YourInformationPage yourInformationPage = new YourInformationPage(webDriver);
+
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
-        productsPage.checkProductsLabel();
+        productsPage.checkAddToCartButton().addToCart();
+
+        productsPage.checkItemsInCartCounterValue();
+
+        productsPage.goToShoppingCart();
+
+        shoppingCartPage.checkCheckoutButton().checkout();
+
+        yourInformationPage.checkCancelButton().checkContinueButton().checkFirstNameField().checkLastNameField().checkPostalCodeField();
 
     }
 
@@ -46,4 +60,5 @@ public class CheckLoginFunctionality {
         webDriver.quit();
 
     }
+
 }

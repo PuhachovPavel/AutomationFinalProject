@@ -6,7 +6,7 @@ import API.dataProviders.UsersProvider;
 import com.jayway.restassured.RestAssured;
 import org.testng.annotations.Test;
 
-public class UpdateUser {
+public class UpdateUserTest {
 
     @Test(dataProvider = "usersProvider", dataProviderClass = UsersProvider.class)
     public void updateUser(UserRequestDataObject user) {

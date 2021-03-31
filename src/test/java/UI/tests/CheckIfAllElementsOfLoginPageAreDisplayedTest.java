@@ -3,15 +3,13 @@ package UI.tests;
 import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
-import UI.pageObjects.ProductsPage;
-import UI.pageObjects.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatAddedItemIsDisplayedInShoppingCart {
+public class CheckIfAllElementsOfLoginPageAreDisplayedTest {
 
     WebDriver webDriver;
 
@@ -31,21 +29,7 @@ public class CheckThatAddedItemIsDisplayedInShoppingCart {
 
         LoginPage loginPage = new LoginPage(webDriver);
 
-        ProductsPage productsPage = new ProductsPage(webDriver);
-
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
-
-        loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
-
-        loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
-
-        productsPage.checkAddToCartButton().addToCart();
-
-        productsPage.checkItemsInCartCounterValue();
-
-        productsPage.goToShoppingCart();
-
-        shoppingCartPage.checkIfAnItemWasAdded().checkItemsInCartCounter();
+        loginPage.checkLogo().checkBotImage().checkUsernameField().checkPasswordField().checkLoginButton();
 
     }
 

@@ -2,15 +2,16 @@ package UI.tests;
 
 import UI.metaData.DriverData;
 import UI.metaData.LoginData;
-import UI.metaData.YourInformationData;
-import UI.pageObjects.*;
+import UI.pageObjects.LoginPage;
+import UI.pageObjects.ProductItemPage;
+import UI.pageObjects.ProductsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckCancelFunctionalityOnOverviewPage {
+public class CheckThatUserCanReturnBackToProductsPageFromProductItemPageTest {
 
     WebDriver webDriver;
 
@@ -32,31 +33,17 @@ public class CheckCancelFunctionalityOnOverviewPage {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
-
-        YourInformationPage yourInformationPage = new YourInformationPage(webDriver);
-
-        OverviewPage overviewPage = new OverviewPage(webDriver);
+        ProductItemPage productItemPage = new ProductItemPage(webDriver);
 
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
-        productsPage.checkAddToCartButton().addToCart();
+        productsPage.checkFirstProductItem().goToFirstItemProductPage();
 
-        productsPage.checkItemsInCartCounterValue();
+        productItemPage.checkBackButton(webDriver).goBack();
 
-        productsPage.goToShoppingCart();
-
-        shoppingCartPage.checkCheckoutButton().checkout();
-
-        yourInformationPage.checkFirstNameField().checkLastNameField().checkPostalCodeField();
-
-        yourInformationPage.enterYourInformation(YourInformationData.FIRSTNAME.getData(), YourInformationData.LASTNAME.getData(), YourInformationData.POSTALCODE.getData()).pressContinue();
-
-        overviewPage.checkCancelButton().cancel();
-
-        productsPage.checkRemoveButton().checkItemsInCartCounterValue();
+        productsPage.checkProductsLabel();
 
     }
 

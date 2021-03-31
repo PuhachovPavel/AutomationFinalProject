@@ -4,15 +4,16 @@ import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
 import UI.pageObjects.ProductsPage;
-import UI.pageObjects.ShoppingCartPage;
-import UI.pageObjects.YourInformationPage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckCancelFunctionalityOnYourInformationPage {
+import static org.testng.Assert.fail;
+
+public class CheckRemoveFunctionalityOnProductsPageTest {
 
     WebDriver webDriver;
 
@@ -34,25 +35,29 @@ public class CheckCancelFunctionalityOnYourInformationPage {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
-        YourInformationPage yourInformationPage = new YourInformationPage(webDriver);
-
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
-
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
         productsPage.checkAddToCartButton().addToCart();
 
-        productsPage.checkItemsInCartCounterValue();
+        productsPage.checkItemsInCartCounter().checkItemsInCartCounterValue();
 
-        productsPage.goToShoppingCart();
+        productsPage.checkRemoveButton().remove();
 
-        shoppingCartPage.checkCheckoutButton().checkout();
+        try{
 
-        yourInformationPage.checkCancelButton().cancel();
+            productsPage.checkItemsInCartCounter();
 
-        shoppingCartPage.checkIfAnItemWasAdded().checkItemsInCartCounter();
+            fail("Cart counter is still displayed");
+
+        } catch (NoSuchElementException e) {
+
+            System.out.println("Cart counter = 0 (not displayed)");
+
+        }
+
+        productsPage.checkAddToCartButton();
 
     }
 

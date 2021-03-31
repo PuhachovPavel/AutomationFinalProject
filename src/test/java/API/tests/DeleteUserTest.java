@@ -3,7 +3,7 @@ package API.tests;
 import com.jayway.restassured.RestAssured;
 import org.testng.annotations.Test;
 
-public class DeleteUser {
+public class DeleteUserTest {
 
     @Test
     public void deleteUser() {

@@ -1,25 +1,25 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "User: Create, Read, Update, Delete">
-    <test name = "Create user">
+<suite name = "userCrudSuite">
+    <test name = "Create user Test">
         <classes>
-            <class name = "API.tests.CreateUser"/>
+            <class name = "API.tests.CreateUserTest"/>
         </classes>
     </test>
-    <test name = "Read user">
+    <test name = "Read user Test">
         <classes>
-            <class name = "API.tests.ReadUser"/>
+            <class name = "API.tests.ReadUserTest"/>
         </classes>
     </test>
-    <test name = "Update user">
+    <test name = "Update user Test">
         <classes>
-            <class name = "API.tests.UpdateUser"/>
+            <class name = "API.tests.UpdateUserTest"/>
         </classes>
     </test>
-    <test name = "Delete user">
+    <test name = "Delete user Test">
         <classes>
-            <class name = "API.tests.DeleteUser"/>
+            <class name = "API.tests.DeleteUserTest"/>
         </classes>
     </test>
 </suite>

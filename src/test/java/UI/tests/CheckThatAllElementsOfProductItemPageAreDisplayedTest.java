@@ -3,15 +3,15 @@ package UI.tests;
 import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
+import UI.pageObjects.ProductItemPage;
 import UI.pageObjects.ProductsPage;
-import UI.pageObjects.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatAllElementsOfShoppingCartPageAreDisplayed {
+public class CheckThatAllElementsOfProductItemPageAreDisplayedTest {
 
     WebDriver webDriver;
 
@@ -33,15 +33,15 @@ public class CheckThatAllElementsOfShoppingCartPageAreDisplayed {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
+        ProductItemPage productItemPage = new ProductItemPage(webDriver);
 
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
 
-        productsPage.checkShoppingCartButton().goToShoppingCart();
+        productsPage.checkFirstProductItem().goToFirstItemProductPage();
 
-        shoppingCartPage.checkContinueShoppingButton().checkCheckoutButton().checkShoppingCartButton();
+        productItemPage.checkProductImage(webDriver).checkPriceTag(webDriver).checkAddToCartButton(webDriver).checkShoppingCartButton(webDriver).checkBackButton(webDriver);
 
     }
 

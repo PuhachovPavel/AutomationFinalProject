@@ -4,14 +4,13 @@ import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
 import UI.pageObjects.ProductsPage;
-import UI.pageObjects.ShoppingCartPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatUserCanReturnToProductsPageFromShoppingCartPage {
+public class CheckLoginFunctionalityTest {
 
     WebDriver webDriver;
 
@@ -33,15 +32,9 @@ public class CheckThatUserCanReturnToProductsPageFromShoppingCartPage {
 
         ProductsPage productsPage = new ProductsPage(webDriver);
 
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
-
         loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
 
         loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
-
-        productsPage.checkShoppingCartButton().goToShoppingCart();
-
-        shoppingCartPage.checkContinueShoppingButton().continueShopping();
 
         productsPage.checkProductsLabel();
 
@@ -53,5 +46,4 @@ public class CheckThatUserCanReturnToProductsPageFromShoppingCartPage {
         webDriver.quit();
 
     }
-
 }

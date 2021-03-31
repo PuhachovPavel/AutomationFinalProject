@@ -3,13 +3,14 @@ package UI.tests;
 import UI.metaData.DriverData;
 import UI.metaData.LoginData;
 import UI.pageObjects.LoginPage;
+import UI.pageObjects.ProductsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class CheckThatLoginPageIsDisplayedAfterUserNavigatesToTheWebsite {
+public class CheckThatAllElementsOfProductsPageAreDisplayedTest {
 
     WebDriver webDriver;
 
@@ -29,7 +30,13 @@ public class CheckThatLoginPageIsDisplayedAfterUserNavigatesToTheWebsite {
 
         LoginPage loginPage = new LoginPage(webDriver);
 
-        loginPage.checkLoginButton();
+        ProductsPage productsPage = new ProductsPage(webDriver);
+
+        loginPage.checkUsernameField().checkPasswordField().checkLoginButton();
+
+        loginPage.login(LoginData.USERNAME.getData(), LoginData.PASSWORD.getData());
+
+        productsPage.checkProductsLabel().checkRobotImage().checkMenuButton().checkAddToCartButton().checkShoppingCartButton().checkSortingDDL();
 
     }
 

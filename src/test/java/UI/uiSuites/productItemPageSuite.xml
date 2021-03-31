@@ -1,25 +1,25 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Product Item Page">
+<suite name = "productItemPageSuite">
     <test name = "All Elements displayed">
         <classes>
-            <class name = "UI.tests.CheckThatAllElementsOfProductItemPageAreDisplayed"/>
+            <class name = "UI.tests.CheckThatAllElementsOfProductItemPageAreDisplayedTest"/>
         </classes>
     </test>
     <test name = "Return">
         <classes>
-            <class name = "UI.tests.CheckThatUserCanReturnBackToProductsPageFromProductItemPage"/>
+            <class name = "UI.tests.CheckThatUserCanReturnBackToProductsPageFromProductItemPageTest"/>
         </classes>
     </test>
     <test name = "Add to Cart from Product Item">
         <classes>
-            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductItemPage"/>
+            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductItemPageTest"/>
         </classes>
     </test>
     <test name = "Remove from Cart from Product Item">
         <classes>
-            <class name = "UI.tests.CheckRemoveFunctionalityOnProductItemPage"/>
+            <class name = "UI.tests.CheckRemoveFunctionalityOnProductItemPageTest"/>
         </classes>
     </test>
 </suite>

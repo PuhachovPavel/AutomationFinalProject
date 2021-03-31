@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Purchase">
+    <test name = "All Elements displayed">
+        <classes>
+            <class name = "UI.tests.CheckThatAllElementsOfShoppingCartPageAreDisplayed"/>
+        </classes>
+    </test>
+    <test name = "Return">
+        <classes>
+            <class name = "UI.tests.CheckThatUserCanReturnToProductsPageFromShoppingCartPage"/>
+        </classes>
+    </test>
+    <test name = "Added Item displayed">
+        <classes>
+            <class name = "UI.tests.CheckThatAddedItemIsDisplayedInShoppingCart"/>
+        </classes>
+    </test>
+    <test name = "Remove">
+        <classes>
+            <class name = "UI.tests.CheckRemoveFunctionalityOnShoppingCartPage"/>
+        </classes>
+    </test>
+    <test name = "Checkout">
+        <classes>
+            <class name = "UI.tests.CheckCheckoutFunctionality"/>
+        </classes>
+    </test>
+</suite>

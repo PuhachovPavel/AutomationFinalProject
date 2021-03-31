@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "All suites">
+    <suite-files>
+        <suite-file path="src/test/java/UI/uiSuites/loginSuite.xml" />
+        <suite-file path="src/test/java/UI/uiSuites/shoppingCartPageSuite.xml" />
+        <suite-file path="src/test/java/UI/uiSuites/productsPageSuite.xml" />
+        <suite-file path="src/test/java/UI/uiSuites/productItemPageSuite.xml" />
+        <suite-file path="src/test/java/UI/uiSuites/shoppingCartPageSuite.xml" />
+        <suite-file path="src/test/java/UI/uiSuites/purchasePagesSuite.xml" />
+        <suite-file path="src/test/java/API/apiSuites/userCrudSuite.xml" />
+    </suite-files>
+</suite>

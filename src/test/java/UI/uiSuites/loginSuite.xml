@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Login, Logout, Login Page">
+    <test name = "Login page displayed when opening the website">
+        <classes>
+            <class name = "UI.tests.CheckThatLoginPageIsDisplayedAfterUserNavigatesToTheWebsite"/>
+        </classes>
+    </test>
+    <test name = "Login page elements">
+        <classes>
+            <class name = "UI.tests.CheckIfAllElementsOfLoginPageAreDisplayed"/>
+        </classes>
+    </test>
+    <test name = "Login">
+        <classes>
+            <class name = "UI.tests.CheckLoginFunctionality"/>
+        </classes>
+    </test>
+    <test name = "logout">
+        <classes>
+            <class name = "UI.tests.CheckLogoutFunctionality"/>
+        </classes>
+    </test>
+    <test name = "Logging in as different users">
+        <classes>
+            <class name = "UI.tests.CheckThatDifferentUsersCanLogIn"/>
+        </classes>
+    </test>
+</suite>

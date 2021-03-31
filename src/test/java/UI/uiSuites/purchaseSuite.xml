@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Purchase">
+    <test name = "Login">
+        <classes>
+            <class name = "UI.tests.CheckLoginFunctionality"/>
+        </classes>
+    </test>
+    <test name = "Add to Cart from Products">
+        <classes>
+            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductsPage"/>
+        </classes>
+    </test>
+    <test name = "Add to Cart from Product Item">
+        <classes>
+            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductItemPage"/>
+        </classes>
+    </test>
+    <test name = "Checkout">
+        <classes>
+            <class name = "UI.tests.CheckCheckoutFunctionality"/>
+        </classes>
+    </test>
+    <test name = "Purchase">
+        <classes>
+            <class name = "UI.tests.CheckFinishFunctionality"/>
+        </classes>
+    </test>
+</suite>

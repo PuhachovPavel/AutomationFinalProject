@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Products Page">
+    <test name = "All Elements displayed">
+        <classes>
+            <class name = "UI.tests.CheckThatAllElementsOfProductsPageAreDisplayed"/>
+        </classes>
+    </test>
+    <test name = "Menu">
+        <classes>
+            <class name = "UI.tests.CheckThatMenuCanBeOpenedAndClosed"/>
+        </classes>
+    </test>
+    <test name = "Add to Cart from Products">
+        <classes>
+            <class name = "UI.tests.CheckAddToCartFunctionalityOnProductsPage"/>
+        </classes>
+    </test>
+    <test name = "Remove from Cart from Products">
+        <classes>
+            <class name = "UI.tests.CheckRemoveFunctionalityOnProductsPage"/>
+        </classes>
+    </test>
+</suite>

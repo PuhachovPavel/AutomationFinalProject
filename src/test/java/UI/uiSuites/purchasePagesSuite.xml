@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Purchase Pages: Your Info, Overview">
+    <test name = "Checkout">
+        <classes>
+            <class name = "UI.tests.CheckCheckoutFunctionality"/>
+        </classes>
+    </test>
+    <test name = "Cancel from Your Info Page">
+        <classes>
+            <class name = "UI.tests.CheckCancelFunctionalityOnYourInformationPage"/>
+        </classes>
+    </test>
+    <test name = "Filling Your Info">
+        <classes>
+            <class name = "UI.tests.CheckFillingYourInformation"/>
+        </classes>
+    </test>
+    <test name = "Cancel from Overview Page">
+        <classes>
+            <class name = "UI.tests.CheckCancelFunctionalityOnOverviewPage"/>
+        </classes>
+    </test>
+    <test name = "Finish">
+        <classes>
+            <class name = "UI.tests.CheckFinishFunctionality"/>
+        </classes>
+    </test>
+</suite>
